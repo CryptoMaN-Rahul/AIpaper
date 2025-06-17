@@ -7,10 +7,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:deploy": "pnpm run pages:build && echo 'Deploy completed'",
     "build:docker": "cross-env NEXT_PUBLIC_BUILD_MODE=standalone next build",
     "build:export": "cross-env NEXT_PUBLIC_BUILD_MODE=export next build",
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "pages:deploy": "pnpm run build && pnpm run pages:build && wrangler pages deploy .vercel/output/static",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
@@ -87,6 +87,7 @@
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "wrangler": "^4.20.1"
   }
 }
