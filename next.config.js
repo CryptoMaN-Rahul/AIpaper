@@ -6,6 +6,12 @@ const uploadProxyUrl = process.env.GEMINI_UPLOAD_BASE_URL || 'https://generative
 
 /** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
 module.exports = async (phase) => {
+  // Setup dev platform for Cloudflare compatibility
+  if (process.env.NODE_ENV === 'development') {
+    const { setupDevPlatform } = await import('@cloudflare/next-on-pages/next-dev')
+    await setupDevPlatform()
+  }
+
   const nextConfig = {
     images: {
       unoptimized: true,
