@@ -40,7 +40,7 @@ class FileManager {
   async resumableUploadFile(file: File): Promise<{ file: FileMetadata }> {
     return new Promise(async (resolve, reject) => {
       // The size of each chunk, the api has a minimum fragment size limit of 8MB for multipart upload files.
-      const chunkSize = 6291456
+      const chunkSize = 8388608 // 8MB
       let currentChunk = 0
 
       const checkUploadStatus = async (uploadUrl: string) => {
