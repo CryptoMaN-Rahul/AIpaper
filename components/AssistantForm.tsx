@@ -196,7 +196,7 @@ function AssistantForm(props: Props) {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="mt-1 space-y-3 max-sm:pb-2">
         {/* Basic Information Section */}
-        <h3 className="font-semibold">基本信息</h3>
+        <h3 className="font-semibold">Basic Information</h3>
 
         {/* Title Field */}
         <FormField
@@ -207,7 +207,7 @@ function AssistantForm(props: Props) {
               <FormControl>
                 <Input
                   className="w-1/2"
-                  placeholder="助手名称"
+                  placeholder="Assistant Name"
                   {...field}
                 />
               </FormControl>
@@ -224,7 +224,7 @@ function AssistantForm(props: Props) {
             <FormItem className="relative">
               <FormControl>
                 <Input
-                  placeholder="助手描述"
+                  placeholder="Assistant Description"
                   {...field}
                 />
               </FormControl>
@@ -234,7 +234,7 @@ function AssistantForm(props: Props) {
         />
 
         {/* System Instructions Section */}
-        <h3 className="font-semibold">角色设定</h3>
+        <h3 className="font-semibold">Role Settings</h3>
 
         {/* System Instruction Field */}
         <FormField
@@ -245,7 +245,7 @@ function AssistantForm(props: Props) {
               <FormControl>
                 <Textarea
                   className="h-[218px] whitespace-pre-wrap max-sm:h-[210px]"
-                  placeholder="系统指令"
+                  placeholder="System Instruction"
                   {...field}
                 />
               </FormControl>
@@ -258,7 +258,7 @@ function AssistantForm(props: Props) {
         <div className="mt-2 flex justify-between gap-2">
           {/* Optimize Button */}
           <Button
-            title="优化提示词"
+            title="Optimize Prompt"
             variant="secondary"
             size="icon"
             type="button"
@@ -275,13 +275,13 @@ function AssistantForm(props: Props) {
               variant="outline"
               onClick={() => reset('clear')}
             >
-              取消
+              Cancel
             </Button>
             <Button
               className="max-sm:flex-1"
               type="submit"
             >
-              {editMode ? '更新助手' : '添加助手'}
+              {editMode ? 'Update Assistant' : 'Add Assistant'}
             </Button>
           </div>
         </div>
@@ -289,5 +289,4 @@ function AssistantForm(props: Props) {
     </Form>
   )
 }
-
 export default memo(AssistantForm)
