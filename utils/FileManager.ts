@@ -75,27 +75,23 @@ class FileManager {
         })
       }
 
-      const uploadFile = async (uploadUrl: string, startByte = 0) => {
-        const fileSize = file.size
-        if (startByte === 0) {
-          startByte = currentChunk * chunkSize
-        }
-        let endByte = Math.min(startByte + chunkSize - 1, fileSize - 1)
+const uploadFile = async (uploadUrl: string, startByte = 0) => {
+    const fileSize = file.size;
+    let endByte = Math.min(startByte + chunkSize - 1, fileSize - 1);
 
-        const result = await uploadChunk(uploadUrl, startByte, endByte)
+    const result = await uploadChunk(uploadUrl, startByte, endByte);
 
-        if (result.status >= 400) {
-          return reject('File upload failed')
-        }
+    if (result.status >= 400) {
+        return reject('File upload failed');
+    }
 
-        if (startByte === 0) currentChunk++
-
-        if (endByte < fileSize - 1) {
-          uploadFile(uploadUrl)
-        } else {
-          return resolve(await result.json())
-        }
-      }
+    if (endByte < fileSize - 1) {
+        // Pass the start of the next chunk
+        uploadFile(uploadUrl, endByte + 1);
+    } else {
+        return resolve(await result.json());
+    }
+};
 
       let uploadUrl = await this.createUploadSession(file.name, file.type)
       if (uploadUrl) {
